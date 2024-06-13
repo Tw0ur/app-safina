@@ -1,6 +1,9 @@
-import { Button } from "@/components/ui/button";
 
-import { AiFillHome } from "react-icons/ai";
+import {ModeToggle} from "@/components/buttons/modeToggle";
 export default function Home() {
-  return <div></div>;
+    return (
+        <div className="h-full">
+            <ModeToggle></ModeToggle>
+        </div>
+    );
 }
