@@ -1,9 +1,8 @@
-import { Button } from "@/components/ui/button";
-
+import {ModeToggle} from "@/components/buttons/modeToggle";
 export default function Home() {
-  return (
-    <div className="h-16">
-      <Button>123</Button>
-    </div>
-  );
+    return (
+        <div className="h-full">
+            <ModeToggle></ModeToggle>
+        </div>
+    );
 }

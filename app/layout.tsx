@@ -1,8 +1,8 @@
 import "@/app/globals.css";
 import { Inter as FontSans } from "next/font/google";
-
 import { cn } from "@/lib/utils";
 import {Menu} from "@/components/menu/menu";
+import {ThemeProvider} from "@/components/theme-provider";
 
 
 const fontSans = FontSans({
@@ -17,21 +17,23 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head />
       <body
         className={cn(
-          "min-h-screen bg-background font-sans antialiased",
+          "min-h-screen bg-background font-sans antialiased w-screen",
           fontSans.variable
         )}
       >
-      <main>
+      <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+      >
+      <main className='min-h-screen w-full'>
           {children}
       </main>
-      <div className=''>
 
-        <Menu/>
-      </div>
-
+          <Menu/>
+      </ThemeProvider>
       </body>
     </html>
   );
