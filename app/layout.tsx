@@ -1,9 +1,9 @@
 import "@/app/globals.css";
 import { Inter as FontSans } from "next/font/google";
 import { cn } from "@/lib/utils";
-import {Menu} from "@/components/menu/menu";
-import {ThemeProvider} from "@/components/theme-provider";
-
+import { Menu } from "@/components/menu/menu";
+import { ThemeProvider } from "@/components/theme-provider";
+import Nav from "@/components/nav/nav";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -23,17 +23,13 @@ export default function RootLayout({
           fontSans.variable
         )}
       >
-      <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-      >
-      <main className='min-h-screen w-full'>
-          {children}
-      </main>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <Nav></Nav>
 
-          <Menu/>
-      </ThemeProvider>
+          <main className="min-h-screen w-full">{children}</main>
+
+          <Menu />
+        </ThemeProvider>
       </body>
     </html>
   );
