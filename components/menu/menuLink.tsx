@@ -3,8 +3,6 @@
 import {usePathname} from "next/navigation";
 import {IMenuLink} from "@/types/types";
 
-
-
 const MenuLink = ({item}: IMenuLink) => {
     const pathname = usePathname()
     return (

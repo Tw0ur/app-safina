@@ -26,6 +26,7 @@ const config = {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        main: "var(--main)",
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -72,10 +73,22 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        animLineUp: {
+          '0%': { opacity: '0', transform: 'translateY(80%)' },
+          '20%': { opacity: '0' },
+          '50%': { opacity: '1', transform: 'translateY(0%)' },
+          '100%': { opacity: '1', transform: 'translateY(0%)' },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        'lineUp': 'animLineUp 2s ease-out forwards',
+      },
+      transitionDelay: {
+        '0': '0ms',
+        '2000': '2000ms',
+        '4000': '4000ms',
       },
     },
   },
