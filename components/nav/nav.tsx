@@ -78,7 +78,7 @@ export const Nav = () => {
                 </a>
                 {item.dropdownItem.length > 0 && (
                   <ul
-                    className={`absolute z-10 top-full mt-2 flex flex-col border shadow-md transition duration-200 bg-white dark:bg-gray-800 ${
+                    className={`absolute z-[1000] top-full mt-2 flex flex-col border shadow-md transition duration-200 bg-white dark:bg-gray-800 ${
                       activeIndex === ind ? "block" : "hidden"
                     }`}
                     onMouseEnter={() => handleMouseEnter(ind)}
