@@ -1,7 +1,8 @@
 "use client";
 
-import { Home, ChevronDown, LogOut, ArrowRightLeft } from "lucide-react";
+import { Home, ChevronDown, LogOut, ArrowRightLeft, X } from "lucide-react";
 import { useState, useRef } from "react";
+import Image from "next/image";
 import { ModeToggle } from "../buttons/modeToggle";
 
 const navItems = [
@@ -34,6 +35,7 @@ const navItems = [
 
 export const Nav = () => {
   const [activeIndex, setActiveIndex] = useState(-1);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const timeoutRef = useRef(null);
 
   const handleMouseEnter = (index) => {
@@ -45,6 +47,10 @@ export const Nav = () => {
     timeoutRef.current = setTimeout(() => {
       setActiveIndex(-1);
     }, 50); // Adjust the delay as needed
+  };
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
   };
 
   return (
@@ -109,7 +115,105 @@ export const Nav = () => {
         </ul>
       </nav>
       {/* For smaller screens */}
-      <nav className="flex lg:hidden justify-between items-center px-2 py-2 shadow-md dark:border dark:border-b-gray-600"></nav>
+      <nav className="flex lg:hidden justify-between items-center px-2 py-2 shadow-md dark:border">
+        <div className="relative w-32 h-8 ml-4">
+          <Image
+            src="/apiSafinaLogo.svg"
+            alt="Safina logo"
+            layout="fill"
+            objectFit="cover"
+          ></Image>
+        </div>
+        <button onClick={toggleMenu} className="p-2">
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            ></path>
+          </svg>
+        </button>
+        {isMenuOpen && (
+          <div
+            className={`fixed top-0 right-0 w-3/4 h-full bg-white dark:bg-black z-50 shadow-lg transform transition-transform duration-300 ease-in-out ${
+              isMenuOpen ? "translate-x-0" : "translate-x-full"
+            }`}
+          >
+            <div className="flex justify-between items-center p-4">
+              <div className="relative w-32 h-8 ml-4">
+                <Image
+                  src="/apiSafinaLogo.svg"
+                  alt="Safina logo"
+                  layout="fill"
+                  objectFit="cover"
+                />
+              </div>
+              <button onClick={toggleMenu} className="p-2">
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+            <div className="flex flex-col p-4 ml-4 gap-2">
+              {navItems.map((item, ind) => {
+                const { icon: Icon } = item;
+                return (
+                  <div key={ind} className="mb-4">
+                    <a
+                      href="#"
+                      className="flex justify-between items-center"
+                      onClick={() => {
+                        activeIndex === ind
+                          ? setActiveIndex(-1)
+                          : setActiveIndex(ind);
+                      }}
+                    >
+                      <div className="flex items-center gap-x-2">
+                        <Icon />
+                        <p>{item.name}</p>
+                      </div>
+                      {item.dropdownItem.length !== 0 && (
+                        <ChevronDown
+                          className={`h-4 w-4 transition duration-200 ${
+                            activeIndex === ind ? "rotate-180" : ""
+                          }`}
+                          aria-hidden="true"
+                        />
+                      )}
+                    </a>
+                    {item.dropdownItem.length > 0 && activeIndex === ind && (
+                      <ul className="mt-2 flex flex-col text-sm">
+                        {item.dropdownItem.map((dropdownItem, dropdownInd) => (
+                          <li
+                            key={dropdownInd}
+                            className="px-4 py-2 hover:bg-gray-300 dark:hover:bg-gray-800"
+                          >
+                            <a href="#" className="block">
+                              {dropdownItem}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                );
+              })}
+              <div className="flex flex-col gap-2">
+                <ModeToggle />
+                <a href="#" className="flex items-center gap-x-2 text-red-500">
+                  <LogOut />
+                  <p>Выйти</p>
+                </a>
+              </div>
+            </div>
+          </div>
+        )}
+      </nav>
     </>
   );
 };
