@@ -8,23 +8,28 @@ import { ModeToggle } from "../buttons/modeToggle";
 const navItems = [
   {
     name: "Главная",
+    link: "/",
     icon: Home,
     dropdownItem: [],
   },
   {
     name: "Операции",
+    link: "/operations",
     icon: ArrowRightLeft,
     dropdownItem: [
-      "Создать кошелек",
-      "Сделать перевод",
-      "Купить криптовалюту",
-      "Обменять токены",
+      { name: "Создать кошелек", link: "wallet" },
+      { name: "Сделать перевод", link: "transaction" },
+      { name: "Купить криптовалюту", link: "buy_crypto" },
+      { name: "Обменять токены", link: "trade_token" },
     ],
   },
   {
     name: "Активы",
     icon: Home,
-    dropdownItem: ["Все кошельки", "Истории транзакции"],
+    dropdownItem: [
+      { name: "Все кошельки", link: "all_wallets" },
+      { name: "Истории транзакции", link: "transaction_history" },
+    ],
   },
   {
     name: "Настройки",
@@ -56,7 +61,9 @@ export const Nav = () => {
   return (
     <>
       {/* For larger screens and over */}
-      <nav className="hidden lg:flex justify-around items-center py-2 shadow-md dark:border dark:border-b-gray-600">
+      {/* Problem with making this position:fixed, because the z-index is bugging out */}
+      {/* TODO: FIX "FIXED POSITION" AND Z-INDEX */}
+      <nav className="hidden lg:flex w-full justify-around items-center py-2 shadow-md dark:border dark:border-b-gray-600">
         <ul className="w-full flex flex-1 justify-around items-start">
           {navItems.map((item, ind) => {
             const { icon: Icon } = item;
@@ -68,7 +75,7 @@ export const Nav = () => {
                 onMouseLeave={handleMouseLeave}
               >
                 <a
-                  href="#"
+                  href={item.link}
                   className="flex justify-center items-center gap-x-1"
                 >
                   <Icon />
@@ -95,8 +102,8 @@ export const Nav = () => {
                         key={dropdownInd}
                         className="text-center px-4 py-2 hover:bg-gray-400 dark:hover:bg-gray-500"
                       >
-                        <a href="#" className="block">
-                          {dropdownItem}
+                        <a href={dropdownItem["link"]} className="block">
+                          {dropdownItem["name"]}
                         </a>
                       </li>
                     ))}
@@ -115,7 +122,7 @@ export const Nav = () => {
         </ul>
       </nav>
       {/* For smaller screens */}
-      <nav className="flex lg:hidden justify-between items-center px-2 py-2 shadow-md dark:border">
+      <nav className="w-full flex lg:hidden justify-between items-center px-2 py-2 shadow-md dark:border">
         <div className="relative w-32 h-8 ml-4">
           <Image
             src="/apiSafinaLogo.svg"
@@ -193,8 +200,8 @@ export const Nav = () => {
                             key={dropdownInd}
                             className="px-4 py-2 hover:bg-gray-300 dark:hover:bg-gray-800"
                           >
-                            <a href="#" className="block">
-                              {dropdownItem}
+                            <a href={dropdownItem["link"]} className="block">
+                              {dropdownItem["name"]}
                             </a>
                           </li>
                         ))}
