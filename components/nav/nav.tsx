@@ -1,6 +1,14 @@
 "use client";
 
-import { Home, ChevronDown, LogOut, ArrowRightLeft, X } from "lucide-react";
+import {
+  Home,
+  ChevronDown,
+  LogOut,
+  ArrowRightLeft,
+  X,
+  Wallet,
+  Settings,
+} from "lucide-react";
 import { useState, useRef } from "react";
 import Image from "next/image";
 import { ModeToggle } from "../buttons/modeToggle";
@@ -25,7 +33,7 @@ const navItems = [
   },
   {
     name: "Активы",
-    icon: Home,
+    icon: Wallet,
     dropdownItem: [
       { name: "Все кошельки", link: "all_wallets" },
       { name: "Истории транзакции", link: "transaction_history" },
@@ -33,7 +41,7 @@ const navItems = [
   },
   {
     name: "Настройки",
-    icon: Home,
+    icon: Settings,
     dropdownItem: [],
   },
 ];
@@ -91,7 +99,7 @@ export const Nav = () => {
                 </a>
                 {item.dropdownItem.length > 0 && (
                   <ul
-                    className={`absolute z-[1000] top-full mt-2 flex flex-col border shadow-md transition duration-200 bg-white dark:bg-gray-800 ${
+                    className={`absolute z-[1000] top-full mt-4 flex flex-col border shadow-md transition duration-200 bg-white dark:bg-gray-800 ${
                       activeIndex === ind ? "block" : "hidden"
                     }`}
                     onMouseEnter={() => handleMouseEnter(ind)}
