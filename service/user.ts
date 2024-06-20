@@ -10,3 +10,14 @@ export const getUser = () =>  {
     const password = 'alicepassword123';
     return users.find(user => user.email === email && user.password === password) ;
 };
+
+export const changePassword = (email:string, oldPassword:string, newPassword:string):boolean => {
+    const user = users.find(user => user.email === email && user.password === oldPassword);
+
+    if (user) {
+        user.password = newPassword;
+        return true; // Indicates success
+    }
+
+    return false; // Indicates failure (user not found or old password doesn't match)
+};
