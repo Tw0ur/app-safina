@@ -40,7 +40,7 @@ export function TableWallets({wallet , bool=false} : {wallet:IWallet[] , bool?:b
                                 <TableHead>{e.wallet_id}</TableHead>
                             </>
                         )}
-                        <TableCell className="text-right" colSpan={2}>{e.balance.find(i => i.token === e.token)?.amount} {e.token}</TableCell>
+                        <TableCell className="text-right" colSpan={2}>{e.balance} {e.token}</TableCell>
                     </TableRow>
                 )})}
             </TableBody>

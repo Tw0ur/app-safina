@@ -26,7 +26,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Nav></Nav>
 
-          <main className="min-h-screen w-full">{children}</main>
+          <main className="h-full w-full">{children}</main>
 
           <Menu />
         </ThemeProvider>

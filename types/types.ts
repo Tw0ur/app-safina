@@ -18,7 +18,7 @@ export interface IUsers {
     password: string,
     created_at: Date,
     wallet: IWallet[] | [];
-    tx_history: ITransaction[] | [];
+    // tx_history: ITransaction[] | [];
 }
 
 export interface IWallet {
@@ -29,9 +29,10 @@ export interface IWallet {
     address:string;
     network:string;
     token:string;
-    balance: IBalance[];
+    balance: number;
     subscribe: ISubscribe[];
-    min_subscribe: number
+    min_subscribe: number;
+    tx_history: ITransaction[] | [];
 }
 
 export interface ITransaction {
@@ -40,7 +41,7 @@ export interface ITransaction {
     wallet: IWallet;
     action: ITypeTransaction
     transaction_id: number;
-    transaction_name: string;
+    transaction_hash: string;
     timestamp: Date;
     description: string;
     amount: number;
@@ -50,10 +51,5 @@ export interface ITransaction {
 export interface ISubscribe {
     subscriber_id: number;
     subscriber_email: string;
-}
-export interface IBalance {
-    balance_id: number
-    amount: number
-    token:string
 }
 

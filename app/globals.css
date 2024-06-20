@@ -35,7 +35,9 @@
 
     --radius: 0.5rem;
 
-    --main:#bc2749
+    --main:#bc2749;
+
+    --error: rgb(220 38 38)
   }
 
   .dark {

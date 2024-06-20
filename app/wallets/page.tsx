@@ -1,6 +1,6 @@
 'use client'
 import { useState, useEffect, ChangeEvent } from 'react';
-import { TableWallets } from "@/components/tables/table";
+import { TableWallets } from "@/components/tables/tableWallets";
 import { InputSearch } from "@/components/inputs/searchInput";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
