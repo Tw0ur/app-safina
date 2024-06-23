@@ -1,6 +1,6 @@
 const PriceCrypto = () => {
   return (
-    <div className="text-sm text-muted-foreground flex gap-1">
+    <div className="text-sm md:text-lg text-muted-foreground flex gap-1 dark:text-white">
       <div>Цена:</div>
       <div>
         <span>1 ETH = 3422.27 USD</span>

@@ -12,6 +12,7 @@ import {
 import { useState, useRef } from "react";
 import Image from "next/image";
 import { ModeToggle } from "../buttons/modeToggle";
+import Link from "next/link";
 
 const navItems = [
   {
@@ -25,18 +26,18 @@ const navItems = [
     link: "/operations",
     icon: ArrowRightLeft,
     dropdownItem: [
-      { name: "Создать кошелек", link: "wallet" },
-      { name: "Сделать перевод", link: "transaction" },
-      { name: "Купить криптовалюту", link: "buy_crypto" },
-      { name: "Обменять токены", link: "trade_token" },
+      { name: "Создать кошелек", link: "/wallet" },
+      { name: "Сделать перевод", link: "/transaction" },
+      { name: "Купить криптовалюту", link: "/buy_crypto" },
+      { name: "Обменять токены", link: "/trade_token" },
     ],
   },
   {
     name: "Активы",
     icon: Wallet,
     dropdownItem: [
-      { name: "Все кошельки", link: "all_wallets" },
-      { name: "Истории транзакции", link: "transaction_history" },
+      { name: "Все кошельки", link: "/wallets" },
+      { name: "Истории транзакции", link: "/tx_history" },
     ],
   },
   {
@@ -82,8 +83,8 @@ export const Nav = () => {
                 onMouseEnter={() => handleMouseEnter(ind)}
                 onMouseLeave={handleMouseLeave}
               >
-                <a
-                  href={item.link}
+                <Link
+                  href={`${item.link}`!}
                   className="flex justify-center items-center gap-x-1"
                 >
                   <Icon />
@@ -96,7 +97,7 @@ export const Nav = () => {
                       aria-hidden="true"
                     />
                   )}
-                </a>
+                </Link>
                 {item.dropdownItem.length > 0 && (
                   <ul
                     className={`absolute z-[1000] top-full mt-4 flex flex-col border shadow-md transition duration-200 bg-white dark:bg-gray-800 ${
@@ -110,9 +111,12 @@ export const Nav = () => {
                         key={dropdownInd}
                         className="text-center px-4 py-2 hover:bg-gray-400 dark:hover:bg-gray-500"
                       >
-                        <a href={dropdownItem["link"]} className="block">
+                        <Link
+                          href={`${dropdownItem["link"]}`!}
+                          className="block"
+                        >
                           {dropdownItem["name"]}
-                        </a>
+                        </Link>
                       </li>
                     ))}
                   </ul>
@@ -123,10 +127,10 @@ export const Nav = () => {
         </ul>
         <ul className="flex gap-x-4 px-6">
           <ModeToggle />
-          <a href="#" className="flex justify-center items-center gap-2">
+          <Link href="#" className="flex justify-center items-center gap-2">
             <LogOut />
             <p className="text-red-500">Выйти</p>
-          </a>
+          </Link>
         </ul>
       </nav>
       {/* For smaller screens */}
@@ -179,7 +183,7 @@ export const Nav = () => {
                 const { icon: Icon } = item;
                 return (
                   <div key={ind} className="mb-4">
-                    <a
+                    <Link
                       href="#"
                       className="flex justify-between items-center"
                       onClick={() => {
@@ -200,7 +204,7 @@ export const Nav = () => {
                           aria-hidden="true"
                         />
                       )}
-                    </a>
+                    </Link>
                     {item.dropdownItem.length > 0 && activeIndex === ind && (
                       <ul className="mt-2 flex flex-col text-sm">
                         {item.dropdownItem.map((dropdownItem, dropdownInd) => (
@@ -208,9 +212,9 @@ export const Nav = () => {
                             key={dropdownInd}
                             className="px-4 py-2 hover:bg-gray-300 dark:hover:bg-gray-800"
                           >
-                            <a href={dropdownItem["link"]} className="block">
+                            <Link href={dropdownItem["link"]} className="block">
                               {dropdownItem["name"]}
-                            </a>
+                            </Link>
                           </li>
                         ))}
                       </ul>
@@ -220,10 +224,13 @@ export const Nav = () => {
               })}
               <div className="flex flex-col gap-2">
                 <ModeToggle />
-                <a href="#" className="flex items-center gap-x-2 text-red-500">
+                <Link
+                  href="#"
+                  className="flex items-center gap-x-2 text-red-500"
+                >
                   <LogOut />
                   <p>Выйти</p>
-                </a>
+                </Link>
               </div>
             </div>
           </div>
